@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock title %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <style>
+      body {
+        font-family: sans-serif !important;
+      }
+      .btn-info:hover{
+        color: #000;
+        background-color: #f1f1f1;
+        border-color: #000;
+      }
+      a{
+        text-decoration:none !important;
+      }
+      .badge-success{
+        background-color: unset;
+        color: green;
+ 
+      }
+      .badge-info {
+        color: green;
+        background-color: unset;
+    }
+      .badge-warning {
+        color: #212529;
+        background-color: #fff;
+    }
+    h4>a{
+      color: #000;
+    }
+    .badge{
+      padding:0;
+    }
+    .btn-info{
+      background-color: #000;
+     border-color: #000;
+    }
+    .page-item.active>.page-link{
+      background-color: #000;
+      border-color: #000;
+    }
+    .btn.btn-primary{
+      background-color: #000;
+    border-color: #000;
+    }
+    a{
+      color:#000;
+    }
+    .btn.btn-order{
+      background-color: #000;
+      border-color: #000;
+      color:#fff;
+    }
+    .btn.btn-clear{
+      background-color: #000;
+      border-color: #000;
+      color:#fff;
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark  bg-dark navbar-expand-lg custom">
+      <div class="container">
+        <a href="{% url 'store:product_list' %}"  class="navbar-brand">NEW WATCHES</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+
+          <form action="/" class="inline-form mr-md-2 ml-auto">
+            
+          </form>
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a href="{% url 'orders:my' %}" class="nav-link text-white">
+                <i class="fa fa-truck fa-lg mr-1"></i> ORDER
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'cart:cart_details' %}" class="nav-link text-white">
+                <i class="fa fa-shopping-cart fa-lg"></i>
+                <span class="badge badge-secondary">
+                  {% if cart %} {{cart|length}} {% else %} 0 {% endif%}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item dropdown text-white">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle mb-0 text-white"
+                data-toggle="dropdown"
+              >
+                {{request.user}}
+              </a>
+              <div class="dropdown-menu">
+                <a href="{% url 'profile'%}" class="dropdown-item">My profile</a>
+                <a href="{% url 'password_change'%}" class="dropdown-item">
+                  Change password
+                </a>
+                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+              </div>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a href="{% url 'login' %}" class="nav-link">
+                <i class="fa fa-sign-in fa-lg"></i> Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'register' %}" class="nav-link">
+                <i class="fa fa-user-plus fa-lg"></i> Register
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {% if messages %}
+      <div class="alert alert-success my-2">
+        {% for message in messages %} {{message}} {% endfor %}
+      </div>
+      {% endif %} {% block content %} {% endblock content %}
+    </div>
+    <!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container-fuild  ">
+
+  <!-- Footer -->
+  <footer
+          class="text-center  bg-dark  text-lg-start text-white"
+      
+          >
+
+
+
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3 pt-4" >
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-4" >
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold">NEW WATCHES</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #fff; height: 2px"
+                />
+            <p>
+              Khám phá bộ sưu tập đồng hồ uy tín của Rolex với độ chính xác vượt trội. Rolex cung cấp nhiều mẫu đồng hồ Cổ điển và Chuyên dụng để phù hợp với bất kỳ cổ tay nào. Khám phá hàng loạt mẫu đồng hồ Rolex để tìm ra sự kết hợp hoàn hảo giữa phong cách và tính năng ưu việt
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Products</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #fff; height: 2px"
+                />
+            <p>
+              <a href="#!" class="text-white">Đồng hồ Rolex</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Đồng hồ DW</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Đồng hồ SM</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Service  </h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #fff; height: 2px"
+                />
+            <p>
+              <a href="#!" class="text-white">Mua một chiếc Rolex</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Tìm đại lý bán lẻ</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Bộ sưu tập của bạn</a>
+            </p>
+            <p>
+              <a href="#!" class="text-white">Giúp đỡ</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+       
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div
+         class="text-center p-3"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      © 2022 Copyright:
+      <a class="text-white" href="#"
+         >NEW WHATCHES</a
+        >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+</div>
+<!-- End of .container -->
+  </body>
+</html>

@@ -1,0 +1,10 @@
+body {
+  font-family: sans-serif !important;
+}
+.auth-card {
+  max-width: 450px;
+}
+.img-aspect {
+  width: auto;
+  margin: 0 auto;
+}
